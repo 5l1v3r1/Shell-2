@@ -36,10 +36,10 @@ _date=`date +%Y-%m-%d`
 _src="/home/$USER/"
 
 # Select Destination
-_dst=$(zenity --file-selection --directory --title "Select back-up location")
+#_dst=$(zenity --file-selection --directory --title "Select back-up location")
 
 # Static destination
-#_dst='/home/$USER/'
+_dst="/home/$USER/"
 
 echo $_dst
 
