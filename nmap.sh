@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
 
   # Display back output
   ${_zenity} --width=800 --height=600  \
-	     --title "Whois info for $_target" \
+	     --title "nmap info for $_target" \
 	     --text-info --filename="${_out}"
 else
   ${_zenity} --error \
