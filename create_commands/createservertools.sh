@@ -28,9 +28,41 @@ function webmin {
   rm /tmp/$_file
 }
 
+function isc-dhcp-server {
+  apt-get install $item -y
+
+   #Static Values
+  #_subnet="192.168.67.0"
+  #_netmask="255.255.255.0"
+  #_range="192.168.67.20 192.168.67.250"
+  #_ip="192.168.67.1"
+
+
+  # Values
+  printf "Subnet       (Ex. 192.168.67.0): "; read _subnet
+  printf "Netmask      (Ex. 255.255.255.0): "; read _netmask
+  printf "Range        (Ex.: 192.168.67.20 192.168.67.250) : "; read _range
+  printf "Interface IP (Ex. 192.168.67.1): "; read _ip
+
+
+  # DHCP configuration
+  echo """
+authoritative;
+
+subnet $_subnet netmask $_netmask {
+    range $_range;
+    option domain-name 'example.com';
+    option domain-name-servers 8.8.8.8, 8.8.4.4;
+    option broadcast-address 192.168.67.255;
+    option routers $_ip;
+      #next-server 192.168.67.20;
+  """ >> ./dhcpd.conf
+
+}
+
 function checkpackages {
   # Packages to check
-  _packages=("lynx" "webmin" "openssh-server" "openssh-client" "mc" "ntopng" "isc-dhcp-server" \
+  _packages=("lynx" "webmin" "isc-dhcp-server" "openssh-server" "openssh-client" "mc" "ntopng" \
         "samba" "lxd" "lxd-client" "quota")
 
   # For item in list, check if installed
@@ -46,7 +78,8 @@ function checkpackages {
         # For webmin, be special
         if [ $item == "webmin" ]; then
           webmin
-
+        elif [ $item == "isc-dhcp-server" ]; then
+          isc-dhcp-server
         else
           # Install package
           apt-get install $item -y
