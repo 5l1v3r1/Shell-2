@@ -44,6 +44,27 @@ function artillery {
     fi
   fi
 
+  accountservice
+
+}
+
+function accountservice {
+  # Set a user as System user to hide it from GDM
+
+  printf "Set SystemAccount for username: "; read _usr
+
+  if [ $_usr == "" ]; then
+    echo -e "\e[31m[ERROR]\e[0m No username given, exiting..."; exit 1
+  else
+
+    if [ $(grep -R "SystemAccount=true" "/var/lib/AccountsService/users/$_usr") ]; then
+      echo -e "\e[32m[OK]\e[0m $_usr already a system user"
+    else
+      sed -i 's/SystemAccount.*/SystemAccount=true/' /var/lib/AccountsService/users/$_usr
+      echo -e "\e[32m[OK]\e[0m SystemAccount for user $_usr"
+    fi
+  fi
+
 }
 
 
