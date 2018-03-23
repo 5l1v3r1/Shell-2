@@ -84,7 +84,7 @@ function checkpackages {
       if [[ $_yn =~ ^[Yy]$ ]]; then
         echo -e "\e[32mInstalling\e[0m $item"
 
-        # For webmin, be special
+        # For atom and skype, be special
         if [ $item == "atom" ]; then
           atom
         elif [ $item == "skypeforlinux" ]; then
