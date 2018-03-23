@@ -69,10 +69,11 @@ function accountservice {
 
 
 function checkpackages {
+  # Missing packages: Anydesk, OBS
 
   # Packages to check
   _packages=("lynx" "git" "keepass2" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
-        "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux")
+        "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" "glances")
 
   # For item in list, check if installed
   #   if not >> ask to install
@@ -84,7 +85,7 @@ function checkpackages {
       if [[ $_yn =~ ^[Yy]$ ]]; then
         echo -e "\e[32mInstalling\e[0m $item"
 
-        # For atom and skype, be special
+        # For webmin, be special
         if [ $item == "atom" ]; then
           atom
         elif [ $item == "skypeforlinux" ]; then
