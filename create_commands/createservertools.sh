@@ -63,7 +63,7 @@ subnet $_subnet netmask $_netmask {
 function checkpackages {
   # Packages to check
   _packages=("lynx" "webmin" "isc-dhcp-server" "openssh-server" "openssh-client" "mc" "ntopng" \
-        "samba" "lxd" "lxd-client" "quota")
+        "samba" "lxd" "lxd-client" "quota" "glances")
 
   # For item in list, check if installed
   #   if not >> ask to install
