@@ -25,7 +25,7 @@ function skype {
 function artillery {
 
   if [ -d /var/artillery ]; then
-    echo -e "\e[32m[OK]\e[0m Artillery"
+    echo -e "\e[32m[OK]\e[0m artillery"
   else
     echo -e "\e[31m[MISSING]\e[0m Artillery"
 
@@ -71,8 +71,8 @@ function accountservice {
 function checkpackages {
 
   # Packages to check
-  _packages=("lynx" "git" "libreoffice-l10n-nl" "mc" "myspell-nl" "vokoscreen" \
-        "vlc" "virtualbox" "thunderbird" "chromium-browser" "atom" "skypeforlinux")
+  _packages=("lynx" "git" "keepass2" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
+        "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux")
 
   # For item in list, check if installed
   #   if not >> ask to install
