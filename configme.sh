@@ -46,7 +46,7 @@ function artillery {
   if [ -d /var/artillery ]; then
     echo -e "\e[32m[OK]\e[0m artillery"
   else
-    echo -e "\e[31m[MISSING]\e[0m Artillery"
+    echo -e "\e[31m[MISSING]\e[0m artillery"
 
     printf "Do you wish to install this now? (y/N) "; read _yn
     if [[ $_yn =~ ^[Yy]$ ]]; then
