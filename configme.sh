@@ -95,15 +95,16 @@ function checkpackages {
         "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" \
         "glances" "gparted" "gimp" "recon-ng" "nmap" "net-tools" "arp-scan" "tilix" "stacer" )
 
+  _install=()
   # For item in list, check if installed
   #   if not >> ask to install
   for item in ${_packages[*]}
   do
     if [ $(dpkg-query -W -f='${Status}' $item 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
       echo -e "\e[31m[MISSING]\e[0m $item"
-        printf "Do you wish to install this now? (y/N) "; read _yn
+        printf "Do you wish to install this package? (y/N) "; read _yn
       if [[ $_yn =~ ^[Yy]$ ]]; then
-        echo -e "\e[32mInstalling\e[0m $item"
+        echo -e "\e[32mMarked for installation\e[0m ($item)"
 
         # For webmin, be special
         if [ $item == "atom" ]; then
@@ -114,16 +115,25 @@ function checkpackages {
           stacer
         else
           # Install package
-          apt-get install $item -y
+          #apt-get install $item -y
+          _install+=("$item")
+
         fi
         # Done installing package
-        echo -e "\e[32mDone\e[0m $item"
+        #echo -e "\e[32mDone\e[0m $item"
       fi
     else
       # Already installed
       echo -e "\e[32m[OK]\e[0m $item"
     fi
   done
+
+  if [ $_install ]; then
+    echo -e "\e[32mInstalling packages\e[0m"
+    apt-get install ${_install[@]} -y
+  fi
+
+  echo -e "\e[32mDone\e[0m"
 
   artillery
 
