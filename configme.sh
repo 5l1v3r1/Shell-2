@@ -10,14 +10,14 @@ function checkroot {
 
 function atom {
   wget https://atom.io/download/deb -P /tmp/ -q
-  dpkg -i /tmp/atom-amd64.deb
+  sudo dpkg -i /tmp/atom-amd64.deb
 
   rm /tmp/atom-amd64.deb
 }
 
 function skype {
   wget https://go.skype.com/skypeforlinux-64.deb -P /tmp/ -q
-  dpkg -i /tmp/skypeforlinux-64.deb
+  sudo dpkg -i /tmp/skypeforlinux-64.deb
   rm /tmp/skypeforlinux-64.deb
 
 }
@@ -34,7 +34,7 @@ function stacer {
   wget $_link -P /tmp/ -q
 
   # Install file
-  dpkg -i /tmp/$_file
+  sudo dpkg -i /tmp/$_file
 
   # Remove file
   rm /tmp/$_file
@@ -56,10 +56,8 @@ function artillery {
       git clone https://github.com/BinaryDefense/artillery.git
 
       # Install
-      python artillery/setup.py
+      sudo python artillery/setup.py
 
-      # Cleaning up
-      rm -rf artillery
     fi
   fi
 
@@ -93,7 +91,7 @@ function checkpackages {
   # Packages to check
   _packages=("keepass2" "xdotool" "lynx" "git" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
         "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" \
-        "glances" "gparted" "gimp" "recon-ng" "nmap" "net-tools" "arp-scan" "tilix" "stacer" )
+        "glances" "gparted" "gimp" "nmap" "net-tools" "arp-scan" "tilix" "stacer" )
 
   _install=()
   # For item in list, check if installed
@@ -107,7 +105,9 @@ function checkpackages {
         echo -e "\e[32mMarked for installation\e[0m ($item)"
 
         # For webmin, be special
-        if [ $item == "atom" ]; then
+        if [ $item == "lynx" ]; then
+          apt install $item
+        elif [ $item == "atom" ]; then
           atom
         elif [ $item == "skypeforlinux" ]; then
           skype
@@ -130,7 +130,7 @@ function checkpackages {
 
   if [ $_install ]; then
     echo -e "\e[32mInstalling packages\e[0m"
-    apt-get install ${_install[@]} -y
+    apt install ${_install[@]} -y
   fi
 
   echo -e "\e[32mDone\e[0m"
