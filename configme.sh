@@ -50,7 +50,7 @@ function artillery {
 
     printf "Do you wish to install this now? (y/N) "; read _yn
     if [[ $_yn =~ ^[Yy]$ ]]; then
-      echo -e "\e[32mInstalling\e[0m Artillery"
+      echo -e "\e[32mInstalling\e[0m artillery"
 
       # Download
       git clone https://github.com/BinaryDefense/artillery.git
@@ -93,7 +93,7 @@ function checkpackages {
   # Packages to check
   _packages=("keepass2" "xdotool" "lynx" "git" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
         "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" \
-        "glances" "gparted" "gimp" "recon-ng" "nmap" "net-tools" "stacer" )
+        "glances" "gparted" "gimp" "recon-ng" "nmap" "net-tools" "arp-scan" "tilix" "stacer" )
 
   # For item in list, check if installed
   #   if not >> ask to install
