@@ -9,7 +9,7 @@ function checkroot {
 }
 
 function atom {
-  wget https://atom.io/download/deb -P /tmp/ -q
+  wget https://github.com/atom/atom/releases/download/v1.25.0/atom-amd64.deb -P /tmp/ -q
   sudo dpkg -i /tmp/atom-amd64.deb
 
   rm /tmp/atom-amd64.deb
@@ -93,7 +93,9 @@ function checkpackages {
         "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" \
         "glances" "gparted" "gimp" "nmap" "net-tools" "arp-scan" "tilix" "stacer" )
 
+  # Append to be installed packages
   _install=()
+
   # For item in list, check if installed
   #   if not >> ask to install
   for item in ${_packages[*]}
@@ -102,21 +104,24 @@ function checkpackages {
       echo -e "\e[31m[MISSING]\e[0m $item"
         printf "Do you wish to install this package? (y/N) "; read _yn
       if [[ $_yn =~ ^[Yy]$ ]]; then
-        echo -e "\e[32mMarked for installation\e[0m ($item)"
 
-        # For webmin, be special
+        # For some packages, be special
         if [ $item == "lynx" ]; then
           apt install $item
         elif [ $item == "atom" ]; then
+          echo -e "\e[32mDownloading...\e[0m"
           atom
         elif [ $item == "skypeforlinux" ]; then
+          echo -e "\e[32mDownloading...\e[0m"
           skype
         elif [ $item == "stacer" ]; then
+          echo -e "\e[32mDownloading...\e[0m"
           stacer
         else
           # Install package
           #apt-get install $item -y
           _install+=("$item")
+          echo -e "\e[32mMarked for installation\e[0m ($item)"
 
         fi
         # Done installing package
