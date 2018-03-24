@@ -22,6 +22,25 @@ function skype {
 
 }
 
+function stacer {
+  # Grab link
+  _link=$(lynx --dump --listonly https://github.com/oguzhaninan/Stacer/releases | grep _amd64.deb | \
+          cut -f2- -d'.' | sed ${1}q;)
+
+  # Grab file
+  _file=$(echo "$_link" | cut -d "/" -f9)
+
+  # Download file
+  wget $_link -P /tmp/ -q
+
+  # Install file
+  dpkg -i /tmp/$_file
+
+  # Remove file
+  rm /tmp/$_file
+
+}
+
 function artillery {
 
   if [ -d /var/artillery ]; then
@@ -69,11 +88,12 @@ function accountservice {
 
 
 function checkpackages {
-  # Missing packages: Anydesk, OBS
+    # Missing packages: Anydesk
 
   # Packages to check
-  _packages=("lynx" "git" "keepass2" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
-        "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" "glances")
+  _packages=("keepass2" "xdotool" "lynx" "git" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
+        "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" \
+        "glances" "gparted" "gimp" "recon-ng" "nmap" "net-tools" "stacer" )
 
   # For item in list, check if installed
   #   if not >> ask to install
@@ -90,6 +110,8 @@ function checkpackages {
           atom
         elif [ $item == "skypeforlinux" ]; then
           skype
+        elif [ $item == "stacer" ]; then
+          stacer
         else
           # Install package
           apt-get install $item -y
