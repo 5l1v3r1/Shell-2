@@ -15,7 +15,7 @@ function setpasswd {
 
 function compress {
   # Compressing
-  zip $_dst/backup_$_date.zip $_src* | ${_zenity} --width=200 height=100 --progress --pulsate \
+  tar -cvf $_dst/backup_$_date.tar $_src* | ${_zenity} --width=200 height=100 --progress --pulsate \
         --text="Compressing Files" --auto-close --percentage=10
 
 }
