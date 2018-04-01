@@ -39,9 +39,6 @@ function common-auth {
   else
     sed -i 's/success=.*/success=2 default=ignore]	pam_unix.so nullok_secure/' $_file
 
-    # This line must be under "auth	[success=2 default=ignore]	pam_unix.so nullok_secure"
-    # Not at the bottom, as it does now.
-
     sed -i '18c\auth	[default=ignore]	pam_exec.so seteuid /usr/bin/takephoto\' ./common-auth
     #echo "auth	[default=ignore]	pam_exec.so seteuid /usr/bin/takephoto" >> $_file
 
