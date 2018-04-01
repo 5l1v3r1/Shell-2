@@ -33,7 +33,6 @@ function common-auth {
   cp /etc/pam.d/common-auth /etc/pam.d/common-auth.bak
   _file="/etc/pam.d/common-auth"
 
-  #if [ $(grep -R "success=2" "/etc/pam.d/common-auth") ]; then
   if [[ $(grep -R "success=2" "$_file") ]]; then
     echo -e "\e[32m[OK]\e[0m Already configured"
   else
