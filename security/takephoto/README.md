@@ -1,5 +1,5 @@
 # Tested on Ubuntu GNOME 17.10 only !!
-### take a photo through the webcam after each incorrect password attempt
+### take a photo through the webcam after each incorrect password attempt and sent an email when internet connected
 
 This script can be expended with the supplied email script.
 
