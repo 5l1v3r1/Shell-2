@@ -69,11 +69,10 @@ try:
     server.ehlo()
     server.starttls()
     server.login(user,passwd)
-    for i in range(1, 1+1): # Send one
-       subject = 'Incorrect password attempt'
-       msg = 'From: ' + user + '\nSubject: ' + subject + '\n' + body
-       server.sendmail(user,to,msg) # Send message
-       server.quit()
+    subject = 'Incorrect password attempt'
+    msg = 'From: ' + user + '\nSubject: ' + subject + '\n' + body
+    server.sendmail(user,to,msg) # Send message
+    server.quit()
 
        print '\nMessage was successfully sent to: ' + to
 
