@@ -5,10 +5,10 @@ This script can be expended with the supplied email script.
 
 >Simply add "python location/to/script/" in "/usr/bin/takephoto" above "exit 0":
 ```Shell
-!/bin/bash
+#!/bin/bash
 ts=`date +%d_%m_%Y-%H_%M_%S`
 ffmpeg -f video4linux2 -s vga -i /dev/video0 -ss 0:0:3 -vframes 3 /tmp/vid-$ts.%01d.jpg
-python /home/$USER/Documents/mail.py
+python /home/$USER/Documents/mail.py  # <--- Added
 exit 0
 ```
 
