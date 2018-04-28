@@ -23,9 +23,9 @@ def location(ip):
     data.append(result["country_name"])
     return data
 
-to = 'lh.voerman@gmail.com'
-user = 'lv-laptop@leonvoerman.nl'
-passwd = '67cnhFdz'
+to = ''
+user = ''
+passwd = ''
 
 body = '''
 Dear user,
