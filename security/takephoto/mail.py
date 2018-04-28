@@ -23,9 +23,9 @@ def location(ip):
     data.append(result["country_name"])
     return data
 
-to = ''
-user = ''
-passwd = ''
+to = '<EMAIL>'
+user = '<EMAIL>'
+passwd = '<PASSWORD>'
 
 body = '''
 Dear user,
@@ -66,7 +66,7 @@ Leon Voerman
 print ''
 
 try:
-    server = smtplib.SMTP('smtp02.hostnet.nl','587')
+    server = smtplib.SMTP('<HOST>','<PORT>')
     server.ehlo()
     server.starttls()
     server.login(user,passwd)
