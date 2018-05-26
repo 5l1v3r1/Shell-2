@@ -1,6 +1,6 @@
-#!/bin/bash
 
 function checkroot {
+  #!/bin/bash
   if [ $(id -u) == 0 ]; then
     checkpackage
   else
@@ -63,6 +63,11 @@ subnet $_subnet netmask $_netmask {
 
   sleep 1
 
+  echo "1" > /proc/sys/net/ipv4/ip_forward
+
+  sleep 1
+
+  echo -e "\e[32m[OK]\e[0m echo '1' > /proc/sys/net/ipv4/ip_forward"
   echo -e "\e[32m[OK]\e[0m DHCP server"
 
 }
