@@ -89,9 +89,9 @@ function checkpackages {
     # Missing packages: Anydesk
 
   # Packages to check
-  _packages=("keepass2" "xdotool" "lynx" "git" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "myspell-nl" "vokoscreen" \
+  _packages=("keepassxc" "xdotool" "lynx" "git" "libreoffice-l10n-nl" "ettercap-graphical" "mc" "hunspell-nl" "vokoscreen" \
         "vlc" "virtualbox" "thunderbird" "corebird" "chromium-browser" "wireshark" "atom" "skypeforlinux" \
-        "glances" "gparted" "gimp" "nmap" "net-tools" "arp-scan" "tilix" "stacer" )
+        "glances" "gparted" "gimp" "peek" "nmap" "net-tools" "arp-scan" "tilix" "stacer")
 
   # Append to be installed packages
   _install=()
